@@ -4,8 +4,9 @@
 git add --all
 
 for /f "tokens=1-3 delims=:.," %%a in ("%TIME%") do (
-    set "COMMIT_MSG=%%a:%%b/%%c"
+    set "COMMIT_MSG=%%a:%%b"
 )
+set "COMMIT_MSG=%DATE% - %COMMIT_MSG%"
 
 git commit -m "%COMMIT_MSG%"
 
