@@ -3,7 +3,10 @@
 :: Add all files to the staging area
 git add --all
 
-set COMMIT_MSG=%DATE% - %TIME%
+for /f "tokens=1-3 delims=:.," %%a in ("%TIME%") do (
+    set "COMMIT_MSG=%%a:%%b/%%c"
+)
+
 git commit -m "%COMMIT_MSG%"
 
 git commit --amend -m "%COMMIT_MSG%"
