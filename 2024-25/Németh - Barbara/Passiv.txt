@@ -1,0 +1,14 @@
+(Man deckt den Tisch.)
+Der Tisch wird gedeckt.
+1.-> Der Tisch wurde gedeckt. (Präteritum)
+2.-> Der Tisch ist gedeckt worden. (Perfekt)
+
+(Man schreibt den Brief.)
+Der Brief wird geschrieben.
+1.-> Der Brief wurde geschrieben. (Präteritum)
+2.-> Der Brief ist geschrieben worden. (Perfekt)
+
+(Die Frau wäscht die Wäsche.)
+Die Wäsche werden gewäscht.
+1.-> Die Wäsche wurden gewäscht.
+2.-> Die Wäsche sind gewäscht worden.
