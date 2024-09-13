@@ -2,6 +2,8 @@
 
 :: Add all files to the staging area
 
+git checkout main
+
 git add .
 
 for /f "tokens=1-3 delims=:.," %%a in ("%TIME%") do (
