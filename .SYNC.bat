@@ -1,7 +1,5 @@
 @echo off
 
-:: Add all files to the staging area
-
 git checkout main
 
 git add .
@@ -13,14 +11,16 @@ set "COMMIT_MSG=%DATE% - %COMMIT_MSG%"
 
 git commit -m "%COMMIT_MSG%"
 
-echo Pulling changes from the remote repository...
+echo.
+echo PULL-ing changes...
 git pull
 
-echo Pushing changes...
+echo.
+echo PUSH-ing changes...
 git push
 
 echo.
-echo Upload successful.
+echo Syncing finished.
 
 TIMEOUT /T 1 > nul
 
