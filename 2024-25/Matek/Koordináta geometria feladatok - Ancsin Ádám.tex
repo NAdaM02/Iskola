@@ -1,0 +1,136 @@
+\documentclass[a4paper,12pt]{article}
+\usepackage[a4paper,left=25mm,right=25mm,top=25mm,bottom=25mm]{geometry}
+\usepackage{t1enc}
+\usepackage[utf8]{inputenc}
+\usepackage[magyar]{babel}
+\usepackage{tikz}
+\usepackage[normalem]{ulem}
+\usepackage{amsmath}
+
+\begin{document}
+
+\textbf{Koordináta geometria feladatok - Ancsin Ádám}
+\\
+\\ \underline{\textit{$\textbf{2. feladat} $}}
+\\
+\\ a)
+\\
+\\ Pontok:
+\\ $A\left(\sqrt{7}, \quad 2\right)$ \qquad $B\left(-1, \quad 1+\sqrt{7}\right)$
+\\
+\\ A két pont távolsága függőleges és víszintes komponensekre bontható szét; \textit{itt} ezek:
+\\
+\\ > víszintes:\quad $d_{x} = \sqrt{7} + 1$
+\\ > függőleges: $d_{y} = \left(1+ \sqrt{7}\right) - 2 = \sqrt{7} - 1$
+\\
+\\ Végül, az ezen távolságok által meghatározott derékszögű háromszög átfogójának hossza megegyezik a két pont távolságával:
+\\
+\\ $d = \sqrt{{d_x}^2 + {d_y}^2} = \sqrt{{\left(\sqrt{7} + 1\right)}^2 + {\left(\sqrt{7} - 1\right)}^2} = \sqrt{2\cdot\sqrt{7}^2 + 2\cdot1^2} = \sqrt{2\cdot7 + 2} = \sqrt{16} =\textbf{4}$
+\\
+\\ \uwave{\textit{Tehát a távolság $A$ és $B$ pont között: 4.}}
+\\
+\\
+\\ b)
+\\
+\\ Általánosan (A és B pontok között):
+\\
+\\ > $d_x = b_x - a_x$
+\\ \textit{Ennyit kell elmozdulni A-ból vízszintesen, hogy a B-vel azonos x pozícióval rendelkezzünk.}
+\\
+\\ > $d_y = b_y - a_y$
+\\ \textit{Ennyit kell elmozdulni A-ból függőlegesen, hogy a B-vel azonos y pozícióval rendelkezzünk.}
+\\
+\\ Végül, az ezen távolságok által meghatározott derékszögű háromszög átfogójának hossza megegyezik a két pont távolságával:
+\setlength{\abovedisplayskip}{0pt}
+\setlength{\belowdisplayskip}{0pt}
+\begin{center}
+\begin{align*}
+d &= \sqrt{{d_x}^2 + {d_y}^2} \\
+d &= \sqrt{\left(b_x - a_x\right)^2 + \left(b_y - a_y\right)^2} \\
+(d &= \sqrt{\left(a_x - b_x\right)^2 + \left(a_y - b_y\right)^2})
+\end{align*}
+\end{center}
+\pagebreak
+\underline{\textit{$\textbf{3. feladat} $}}
+\\
+\\ a) Egy olyan egyenes, amely átmegy az $A(2,3)$ és a $B(5,-1)$ pontokon.
+\\
+\\ \indent\textit{A lineáris egyenletek képlete:} $y = a \cdot x + c$
+\\
+\\ Az egyenes meredeksége a két pont alapján:
+\\ $x \rightarrow x+3 \quad \Rightarrow \quad y \rightarrow y-4$
+\\
+\\ $\Rightarrow \quad \frac{dy}{dx} = -\frac{4}{3} =$ \textit{a háromszög meredeksége}
+\\
+\\ Így tudjuk, a keresett egyenes párhuzamos az $y = \frac{-4}{3} \cdot x$ egyenessel.
+\\
+\\ A konstans tagot (az eltolást) pedig a megadott pontok alapján számíthatjuk ki.
+\\ \indent Tudjuk, hogy a függvény $x=2$ helyen $y=3$ értéket vesz fel, \textit{így}
+\\ \indent $\rightarrow$
+\\ \indent \indent ($y = a \cdot x+c$)
+\\ \indent \indent $3 = \frac{-4}{3} \cdot 2 + c$
+\\ \indent \indent $c = 3 - \frac{-8}{3}$
+\\ \indent \indent $c = \frac{17}{3}$
+\\
+\\ A feladatnak megfelelő egyenes képlete tehát:
+\\ $$y = \frac{-4}{3}x + \frac{17}{3}$$
+\\
+\\
+\\ b) Egy félkör
+\\
+\\ A körök egyenletének képlete:\quad $\sqrt{x^2 + y^2} = r$
+\\
+\\ \indent Hogy elhagyjuk az $y$ negatív értékeit azt a tényt használhatjuk ki, hogy ha a $\sqrt{ }$-jel alatt negatív szám van, azt nem értelmezzük, így azon helyeken nem vesz fel a függvény értéket (a valós számok halmazában).
+\\
+\\ $\rightarrow$ Így az alábbi egyenleteket kaphatjuk:
+\\ \indent ($\sqrt{x^2 + y^2}$) $\Rightarrow$ $\sqrt{x^2 + \left(\sqrt{y}\right)^4} = r$
+\\ \indent \indent $\rightarrow$ Amennyiben ezt nem találjuk korrektnek -- mivel az egyenlet bizonyos tekintetben könnyen egyszerűsíthető a teljes kör képletére -- az alábbi egyenlethez fordulhatunk:
+\\ $$\sqrt{\frac{|y|}{y}(x^2 + y^2)} = r$$
+\\ \textit{Ez valóban egy $r$ sugarú félkört rajzol ki, ugyanis hasonló egy teljes kör képletéhez, míg amennyiben $y$ negatív, értékét nem értelmezzük.}
+\\
+\\ Mivel a feladat \textit{egy} félkörre utal, egy $3$ sugarú félkör képlete: $\sqrt{\frac{|y|}{y}(x^2 + y^2)} = 3$
+\\
+\\ c) Két különböző pont (és semmi más).
+\\
+\\ Egy egyenlet, melynek pontosan 2 (különböző) megoldása van.
+\\
+\\ Úgy szabályozhatunk le könnyen egy változót, hogy ha egy adott értékhez való eltérése nem $0$, akkor annak abszolút értékenek ellentetje negatív. Így annak gyöke csak egy adott érték esetén értelmes.
+\\ $\sqrt{-|a-x|}$ (= 0)
+\\
+\\ Ezt könnyen módosíthatjuk úgy, hogy két érték esetén is megfeleljen a feltételnek.
+\\ $\sqrt{-|a-|x||} (= 0)$ , mely a korábbi ``érvényes'' $x$ értékhez képest, már annak ellentetjével is értelmezhető.
+\\
+\\ Mivel 2 pontot szeretnénk létrehozni, mondhatjuk, hogy $x$ ``lehessen'' 2-féle, míg $y$, csak 1 értéket vehessen fel.
+\\ Az így létrehozott függvény:
+\\ \indent $\sqrt{-|a-|x||} \cdot \sqrt{-|b-y|} = 0$
+\\ 
+\\ \indent Ez pontosan a $P(a, b)$ és $Q(-a, b)$ pontokban értelmezhető.
+\\
+\\ \textit{Példa:} $\sqrt{-|3-|x||} \cdot \sqrt{-|2-y|} = 0$
+\\ \indent Mely a $(3, 2)$ és $(-3, 2)$ pontokban értelmezhető.
+\\
+\\
+\\
+\underline{\textit{$\textbf{4. feladat} $}}
+\\
+\\ Amennyiben a $BC$ egyenes x-tengellyel bezárt szögét meg tudjuk határozni, a $C$ pont oordinátája is meghatározható. (Egy ábra segítségével könnyen belátható, hogy:)
+\\
+\\ $[$A $BC$ egyenes x-tengellyel bezárt szöge$] = 180^{\circ} + [AB$ x-tengellyel bezárt szöge$] - 60^{\circ}$
+\\
+\\ $[AB$ x-tengellyel bezárt szöge$] = \tan{}[AB$ meredeksége$]$
+\\
+\\ $[AB$ meredeksége$] = \frac{d_{AB,y}}{d_{AB,x}} = \frac{7 - 2}{-4 - 1} = \frac{5}{-5} = -1 $
+\\
+\\ $\Rightarrow [AB$ x-tengellyel bezárt szöge$] = -45^{\circ} $
+\\
+\\ \indent \indent $\Rightarrow [$A $BC$ egyenes x-tengellyel bezárt szöge$] = 180^{\circ} + (-45^{\circ}) - 60^{\circ} = \alpha = 75^{\circ} $ 
+\\
+\\ \textit{Ezt} és $C$ abszcisszáját felhasználva:
+$$\tan(\alpha) = \frac{c_y - b_y}{c_x - b_x}$$
+$$\tan(75^\circ) = \frac{p - (-4)}{11 - 7} = \frac{p + 4}{4}$$
+$$p = 4(\tan{75^\circ}-1)$$
+$$p = 4(2+\sqrt{3}-1)$$
+$$p = 4 + \sqrt{48}$$
+
+
+\end{document}
