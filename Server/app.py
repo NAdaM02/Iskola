@@ -11,8 +11,8 @@ import os
 app = Flask(__name__)
 
 BASE_DIR = Path.cwd().parent / "2024-25"
-print("Current working directory:", Path.cwd())
-print("Expected BASE_DIR:", BASE_DIR)
+print("\n\n\nCurrent working directory:", Path.cwd())
+print("Expected BASE_DIR:", BASE_DIR,"\n\n\n")
 EXCLUDED_SUBJECTS = {"Németh", "Zeneirodalom", "Matek", "Fizika"}
 TEMP_DIR = Path("data")
 TEMP_DIR.mkdir(exist_ok=True)
