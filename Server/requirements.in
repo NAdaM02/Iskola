@@ -1,4 +1,0 @@
-flask
-pdfkit
--e git+https://github.com/DissectMalware/pyOneNote.git@main#egg=pyonenote
-werkzeug
