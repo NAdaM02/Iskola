@@ -32,8 +32,6 @@ def extract_content(subject, mode, count=5, date=None):
     with open(file_path, "rb") as file:
         # Check if it's a valid OneNote file
         file.seek(0)
-        if not OneDocment.check_valid(file):
-            return None
         
         # Reset file pointer and process the file
         file.seek(0)
