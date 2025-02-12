@@ -12,16 +12,11 @@ app = Flask(__name__)
 
 EXCLUDED_SUBJECTS = {"Németh", "Zeneirodalom", "Matek", "Fizika"}
 
-BASE_DIR = Path.cwd().parent / "2024-25"
-TEMP_DIR = Path.cwd().parent / "Server" / "data"
+BASE_DIR = Path(__file__).resolve().parent.parent / "2024-25"
+TEMP_DIR = Path(__file__).resolve() / "data"
 
 print("\n\n\nCurrent working directory:", Path.cwd())
 print("Expected BASE_DIR:", BASE_DIR)
-try:
-    print(Path.cwd().parent.parent)
-except:
-    pass
-print(Path.cwd().parents)
 print("Expected TEMP_DIR:", TEMP_DIR,"\n\n\n")
 
 def get_one_file_path(subject):
