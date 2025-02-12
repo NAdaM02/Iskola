@@ -64,7 +64,7 @@ def extract_content(subject, mode, count=5, date=None):
                 if date in str(f['properties'].get('LastModifiedTime', ''))
             ]
         
-        print(files_data)
+        print(" ".join(files_data))
         return files_data
 
 def convert_content_to_pdf(files_data, output_file):
