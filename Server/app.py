@@ -10,12 +10,14 @@ import os
 
 app = Flask(__name__)
 
-BASE_DIR = Path.cwd().parent / "2024-25"
-print("\n\n\nCurrent working directory:", Path.cwd())
-print("Expected BASE_DIR:", BASE_DIR,"\n\n\n")
 EXCLUDED_SUBJECTS = {"Németh", "Zeneirodalom", "Matek", "Fizika"}
-TEMP_DIR = Path("data")
-TEMP_DIR.mkdir(exist_ok=True)
+
+BASE_DIR = Path.cwd().parent / "2024-25"
+TEMP_DIR = Path.cwd().parent / "Server" / "data"
+
+print("\n\n\nCurrent working directory:", Path.cwd())
+print("Expected BASE_DIR:", BASE_DIR)
+print("Expected TEMP_DIR:", TEMP_DIR,"\n\n\n")
 
 def get_one_file_path(subject):
     subject = secure_filename(subject)
