@@ -17,11 +17,9 @@ BASE_DIR = Path(__file__).resolve().parent / "2024-25"
 print("\n\n\nCurrent working directory:", Path.cwd())
 print("Expected BASE_DIR:", BASE_DIR)
 
-
 def get_one_file_path(subject):
     subject_path = BASE_DIR / subject / f".{subject}.one"
     return subject_path if subject_path.exists() else None
-
 
 def extract_content(subject, mode, count=5, date=None, password=None):
     file_path = get_one_file_path(subject)
@@ -30,13 +28,6 @@ def extract_content(subject, mode, count=5, date=None, password=None):
         return None
 
     print(f"Attempting to open file: {file_path}")
-
-    if not file_path.exists():
-        print(f"Error: File does not exist: {file_path}")
-        return None
-    if not os.access(file_path, os.R_OK):
-        print(f"Error: File is not readable: {file_path}")
-        return None
 
     try:
         with open(file_path, "rb") as f:
@@ -64,16 +55,6 @@ def extract_content(subject, mode, count=5, date=None, password=None):
                 'content': file_content,
             })
 
-        # Extract images (if available)
-        if hasattr(extractor, 'extract_images'):
-            for image_index, (image_name, image_data) in enumerate(extractor.extract_images()):
-                extracted_data.append({
-                    'type': 'image',
-                    'index': image_index,
-                    'file_name': image_name,
-                    'content': image_data,
-                })
-
         print(f"Extracted {len(extracted_data)} items BEFORE filtering.")
 
     except Exception as e:
@@ -97,13 +78,11 @@ def extract_content(subject, mode, count=5, date=None, password=None):
             if isinstance(item.get('last_modified_time'), datetime)
             and item['last_modified_time'].date() == target_date
         ]
-
     else:
         filtered_data = extracted_data
 
     print(f"Extracted {len(filtered_data)} items AFTER filtering.")
     return filtered_data
-
 
 def convert_content_to_pdf(files_data, output_file):
     html_content = "<h1>OneNote Export</h1>"
@@ -130,8 +109,8 @@ def convert_content_to_pdf(files_data, output_file):
             else:
                 html_content += f"<p>Unknown content type: {item['type']}</p><br>"
 
-        pdfkit.from_string(html_content, str(output_file))
-
+        config = pdfkit.configuration(wkhtmltopdf='/usr/bin/wkhtmltopdf')
+        pdfkit.from_string(html_content, str(output_file), configuration=config)
 
 @app.route("/")
 def index():
@@ -140,7 +119,6 @@ def index():
         if s.is_dir() and s.name not in EXCLUDED_SUBJECTS
     ]
     return render_template("index.html", subjects=subjects)
-
 
 @app.route("/download", methods=["POST"])
 def download():
@@ -160,7 +138,6 @@ def download():
         convert_content_to_pdf(files_data, pdf_path)
 
         return send_file(pdf_path, as_attachment=True)
-
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=5000, debug=True)
