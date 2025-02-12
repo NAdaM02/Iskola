@@ -2,7 +2,7 @@ from pathlib import Path
 from datetime import datetime
 from flask import Flask, render_template, request, send_file, abort
 import pdfkit
-from pyOneNote.OneDocument import OneDocment
+from pyOneNote.OneDocument import OneDocment as OneDocument
 from werkzeug.utils import secure_filename
 import json
 import tempfile
@@ -26,17 +26,16 @@ def get_one_file_path(subject):
 
 def extract_content(subject, mode, count=5, date=None):
     file_path = get_one_file_path(subject)
+    print(file_path)
     if not file_path:
         return None
 
     with open(file_path, "rb") as file:
-        # Check if it's a valid OneNote file
+        print(file)
         file.seek(0)
-        
-        # Reset file pointer and process the file
-        file.seek(0)
-        document = OneDocment(file)
+        document = OneDocument(file)
         content = document.get_json()
+        print(content)
         
         # Extract embedded files and their properties
         files_data = []
