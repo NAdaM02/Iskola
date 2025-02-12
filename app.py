@@ -12,8 +12,8 @@ app = Flask(__name__)
 
 EXCLUDED_SUBJECTS = {"Németh", "Zeneirodalom", "Matek", "Fizika"}
 
-BASE_DIR = Path(__file__).resolve() / "2024-25"
-TEMP_DIR = Path(__file__).resolve() / "data"
+BASE_DIR = Path(__file__).resolve().parent / "2024-25"
+TEMP_DIR = Path(__file__).resolve().parent / "data"
 
 print("\n\n\nCurrent working directory:", Path.cwd())
 print("Expected BASE_DIR:", BASE_DIR)
