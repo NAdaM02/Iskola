@@ -1,111 +1,61 @@
 from pathlib import Path
 from datetime import datetime
-from flask import Flask, render_template, request, send_file, abort
-import pdfkit
-from pyOneNote.OneDocument import OneDocment as OneDocument
-from werkzeug.utils import secure_filename
-import json
 import tempfile
-import os
+from flask import Flask, render_template, request, send_file, abort
+from werkzeug.utils import secure_filename
+import aspose.note as an
 
 app = Flask(__name__)
 
 EXCLUDED_SUBJECTS = {"Németh", "Zeneirodalom", "Matek", "Fizika"}
 
 BASE_DIR = Path(__file__).resolve().parent / "2024-25"
-TEMP_DIR = Path(__file__).resolve().parent / "data"
 
 print("\n\n\nCurrent working directory:", Path.cwd())
 print("Expected BASE_DIR:", BASE_DIR)
-print("Expected TEMP_DIR:", TEMP_DIR,"\n\n\n")
 
 def get_one_file_path(subject):
     subject = secure_filename(subject)
     subject_path = BASE_DIR / subject / f".{subject}.one"
     return subject_path if subject_path.exists() else None
 
-def extract_content(subject, mode, count=5, date=None):
+def convert_one_to_pdf(subject, mode, count=5, date=None):
     file_path = get_one_file_path(subject)
     if not file_path:
         return None
 
-    with open(file_path, "rb") as file:
-        file.seek(0)
-        document = OneDocument(file)
-        content = document.get_json()
-        
-        # Extract embedded files and their properties
-        files_data = []
-        for file_guid, file_info in content['files'].items():
-            # Get associated properties
-            file_properties = next(
-                (prop for prop in content['properties'] 
-                 if prop['identity'] == file_info['identity']),
-                None
-            )
-            
-            if file_properties:
-                files_data.append({
-                    'content': bytes.fromhex(file_info['content']),
-                    'extension': file_info['extension'],
-                    'properties': file_properties['val']
-                })
-        
-        # Sort and filter based on mode
+    # Create a temporary directory that will be automatically cleaned up
+    with tempfile.TemporaryDirectory() as temp_dir:
+        temp_dir_path = Path(temp_dir)
+        pdf_path = temp_dir_path / f"{secure_filename(subject)}_{datetime.now().strftime('%Y%m%d_%H%M%S')}.pdf"
+
+        # Load the OneNote document
+        document = an.Document(str(file_path))
+
         if mode == "last_x":
-            files_data = sorted(
-                files_data,
-                key=lambda x: x['properties'].get('LastModifiedTime', ''),
-                reverse=True
-            )[:count]
+            #  Aspose.Note has page-level last modified time
+            pages = sorted(document.get_child_nodes(an.Page), key=lambda p: p.last_modified_time, reverse=True)[:count]
+            new_doc = an.Document()
+            for page in pages:
+                new_doc.append_child_last(page.clone())  # Append clones to avoid modifying the original
+            document = new_doc
+
         elif mode == "by_date" and date:
-            files_data = [
-                f for f in files_data
-                if date in str(f['properties'].get('LastModifiedTime', ''))
-            ]
-        
-        print(" ".join(files_data))
-        return files_data
+            new_doc = an.Document()
+            for page in document.get_child_nodes(an.Page):
+                if date in str(page.last_modified_time.date()):
+                    new_doc.append_child_last(page.clone())
+            document = new_doc
 
-def convert_content_to_pdf(files_data, output_file):
-    html_content = "<h1>OneNote Export</h1>"
-    
-    for file_data in files_data:
-        # Add metadata if available
-        if 'properties' in file_data:
-            title = file_data['properties'].get('DisplayName', 'Untitled')
-            modified_time = file_data['properties'].get('LastModifiedTime', '')
-            html_content += f"<h2>{title}</h2>"
-            html_content += f"<p>Last Modified: {modified_time}</p>"
-        
-        # Handle different types of content based on extension
-        if file_data['extension'].lower() in {'.png', '.jpg', '.jpeg', '.gif'}:
-            # Create a temporary file for the image
-            with tempfile.NamedTemporaryFile(suffix=file_data['extension'], delete=False) as temp_file:
-                temp_file.write(file_data['content'])
-                html_content += f'<img src="{temp_file.name}" style="max-width: 100%"><br>'
-        else:
-            try:
-                text_content = file_data['content'].decode('utf-8', errors='ignore')
-                html_content += f"<pre>{text_content}</pre><br>"
-            except Exception:
-                html_content += "<p>Binary content not displayed</p><br>"
+        # Save the document as PDF
+        document.save(str(pdf_path))
 
-    pdfkit.from_string(html_content, str(output_file))
-    
-    # Cleanup temporary files
-    for filename in os.listdir():
-        if filename.startswith('tmp') and any(filename.endswith(ext) 
-            for ext in ['.png', '.jpg', '.jpeg', '.gif']):
-            try:
-                os.remove(filename)
-            except:
-                pass
+        return pdf_path
 
 @app.route("/")
 def index():
     subjects = [
-        s.name for s in BASE_DIR.iterdir() 
+        s.name for s in BASE_DIR.iterdir()
         if s.is_dir() and s.name not in EXCLUDED_SUBJECTS
     ]
     return render_template("index.html", subjects=subjects)
@@ -117,19 +67,15 @@ def download():
     count = int(request.form.get("count", 5))
     date = request.form.get("date")
 
-    files_data = extract_content(subject, mode, count, date)
-    if not files_data:
-        abort(404, description="No content found")
+    pdf_path = convert_one_to_pdf(subject, mode, count, date)
+    if not pdf_path:
+        abort(404, description="No content found or conversion failed.")
 
-    pdf_path = TEMP_DIR / f"{secure_filename(subject)}_{datetime.now().strftime('%Y%m%d_%H%M%S')}.pdf"
-    convert_content_to_pdf(files_data, pdf_path)
+    try:
+        return send_file(pdf_path, as_attachment=True)
     
-    @app.after_request
-    def cleanup(response):
-        pdf_path.unlink(missing_ok=True)
-        return response
-
-    return send_file(pdf_path, as_attachment=True)
+    finally:
+        pass
 
 if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=5000)
+    app.run(host="0.0.0.0", port=5000, debug=True)
