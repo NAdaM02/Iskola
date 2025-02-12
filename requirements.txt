@@ -1,3 +1,4 @@
 flask
 werkzeug
-comtypes
+one-extract
+pdfkit
