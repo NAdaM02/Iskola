@@ -2,41 +2,77 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>OneNote to PDF Converter</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        select, input {
+            padding: 5px;
+            margin: 5px 0;
+            width: 200px;
+        }
+        button {
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
 </head>
 <body>
     <h1>Convert OneNote Files to PDF</h1>
     <form action="/download" method="post">
-        <label for="subject">Select Subject:</label>
-        <select name="subject" id="subject">
-            {% for subject in subjects %}
-                <option value="{{ subject }}">{{ subject }}</option>
-            {% endfor %}
-        </select>
-        <br><br>
-        <label for="mode">Select Mode:</label>
-        <select name="mode" id="mode" onchange="toggleOptions()">
-            <option value="full">Whole Notebook</option>
-            <option value="last_x">Last X Pages</option>
-            <option value="by_date">By Date</option>
-        </select>
-        <br><br>
-        <div id="count_option" style="display:none;">
-            <label for="count">Enter number of pages:</label>
+        <div class="form-group">
+            <label for="subject">Select Subject:</label>
+            <select name="subject" id="subject" required>
+                <option value="">Choose a subject</option>
+                {% for subject in subjects %}
+                    <option value="{{ subject }}">{{ subject }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        
+        <div class="form-group">
+            <label for="mode">Select Mode:</label>
+            <select name="mode" id="mode" required onchange="toggleOptions()">
+                <option value="">Choose a mode</option>
+                <option value="full">Whole Notebook</option>
+                <option value="last_x">Last X Pages</option>
+                <option value="by_date">By Date</option>
+            </select>
+        </div>
+        
+        <div id="count_option" class="form-group" style="display:none;">
+            <label for="count">Number of pages:</label>
             <input type="number" name="count" id="count" min="1" value="5">
         </div>
-        <div id="date_option" style="display:none;">
-            <label for="date">Enter date (YYYY-MM-DD):</label>
+        
+        <div id="date_option" class="form-group" style="display:none;">
+            <label for="date">Date (YYYY-MM-DD):</label>
             <input type="date" name="date" id="date">
         </div>
-        <br>
+        
         <button type="submit">Convert to PDF</button>
     </form>
+
     <script>
         function toggleOptions() {
-            var mode = document.getElementById("mode").value;
-            document.getElementById("count_option").style.display = (mode == "last_x") ? "block" : "none";
-            document.getElementById("date_option").style.display = (mode == "by_date") ? "block" : "none";
+            const mode = document.getElementById("mode").value;
+            document.getElementById("count_option").style.display = (mode === "last_x") ? "block" : "none";
+            document.getElementById("date_option").style.display = (mode === "by_date") ? "block" : "none";
         }
     </script>
 </body>
