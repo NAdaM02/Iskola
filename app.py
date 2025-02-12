@@ -26,16 +26,13 @@ def get_one_file_path(subject):
 
 def extract_content(subject, mode, count=5, date=None):
     file_path = get_one_file_path(subject)
-    print(file_path)
     if not file_path:
         return None
 
     with open(file_path, "rb") as file:
-        print(file)
         file.seek(0)
         document = OneDocument(file)
         content = document.get_json()
-        print(content)
         
         # Extract embedded files and their properties
         files_data = []
@@ -66,7 +63,8 @@ def extract_content(subject, mode, count=5, date=None):
                 f for f in files_data
                 if date in str(f['properties'].get('LastModifiedTime', ''))
             ]
-            
+        
+        print(files_data)
         return files_data
 
 def convert_content_to_pdf(files_data, output_file):
