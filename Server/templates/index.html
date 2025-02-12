@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OneNote to PDF Converter</title>
+    <script>
+        async function fetchSubjects() {
+            const response = await fetch("/subjects");
+            const subjects = await response.json();
+            const subjectSelect = document.getElementById("subject");
+            subjectSelect.innerHTML = subjects.map(s => `<option value="${s}">${s}</option>`).join('');
+            fetchFiles(); // Load files for the first subject
+        }
+
+        async function fetchFiles() {
+            const subject = document.getElementById("subject").value;
+            const response = await fetch(`/files?subject=${subject}`);
+            const files = await response.json();
+            const fileSelect = document.getElementById("file");
+            fileSelect.innerHTML = files.map(f => `<option value="${f}">${f}</option>`).join('');
+        }
+
+        async function convertFile(mode) {
+            const subject = document.getElementById("subject").value;
+            const file = document.getElementById("file").value;
+            let url = `/convert?subject=${subject}&file=${file}&mode=${mode}`;
+
+            if (mode === "last_x") {
+                const x = document.getElementById("last_x").value;
+                url += `&x=${x}`;
+            } else if (mode === "date") {
+                const date = document.getElementById("date").value;
+                url += `&date=${date}`;
+            }
+
+            const response = await fetch(url);
+            const blob = await response.blob();
+            const link = document.createElement("a");
+            link.href = URL.createObjectURL(blob);
+            link.download = file.replace(".one", ".pdf");
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        }
+
+        window.onload = fetchSubjects;
+    </script>
+</head>
+<body>
+    <h1>Convert OneNote Files to PDF</h1>
+
+    <label for="subject">Select Subject:</label>
+    <select id="subject" onchange="fetchFiles()"></select>
+
+    <label for="file">Select File:</label>
+    <select id="file"></select>
+
+    <br><br>
+
+    <label for="last_x">Last X Notes:</label>
+    <input type="number" id="last_x" value="5" min="1">
+    <button onclick="convertFile('last_x')">Convert Last X</button>
+
+    <br><br>
+
+    <label for="date">Specific Date (YYYY-MM-DD):</label>
+    <input type="date" id="date">
+    <button onclick="convertFile('date')">Convert by Date</button>
+
+    <br><br>
+
+    <button onclick="convertFile('full')">Convert Whole Notebook</button>
+</body>
+</html>
