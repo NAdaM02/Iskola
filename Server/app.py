@@ -17,7 +17,11 @@ TEMP_DIR = Path.cwd().parent / "Server" / "data"
 
 print("\n\n\nCurrent working directory:", Path.cwd())
 print("Expected BASE_DIR:", BASE_DIR)
-print(Path.cwd().cwd())
+try:
+    print(Path.cwd().parent.parent)
+except:
+    pass
+print(Path.cwd().parents)
 print("Expected TEMP_DIR:", TEMP_DIR,"\n\n\n")
 
 def get_one_file_path(subject):
