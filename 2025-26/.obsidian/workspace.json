@@ -1,0 +1,181 @@
+{
+  "main": {
+    "id": "742c10deb660d5e9",
+    "type": "split",
+    "children": [
+      {
+        "id": "ab97c84f66f4f240",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "9dc8140cfb9336ac",
+            "type": "leaf",
+            "state": {
+              "type": "empty",
+              "state": {},
+              "icon": "lucide-file",
+              "title": "New tab"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "e62f3a96817135ed",
+    "type": "split",
+    "children": [
+      {
+        "id": "d1dd103cb3811a4d",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "aa2847f510dce0eb",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabeticalReverse",
+                "autoReveal": false
+              },
+              "icon": "lucide-folder-closed",
+              "title": "Files"
+            }
+          },
+          {
+            "id": "b86f2e7b76c112ee",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              },
+              "icon": "lucide-search",
+              "title": "Search"
+            }
+          },
+          {
+            "id": "f90f2b0144c0f63c",
+            "type": "leaf",
+            "state": {
+              "type": "bookmarks",
+              "state": {},
+              "icon": "lucide-bookmark",
+              "title": "Bookmarks"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300
+  },
+  "right": {
+    "id": "d2d3b21d0c532f74",
+    "type": "split",
+    "children": [
+      {
+        "id": "ea1592c36c3ede3a",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "89134175c8cd8fd6",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "file": "Angol/Angol.md",
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-coming-in",
+              "title": "Backlinks for Angol"
+            }
+          },
+          {
+            "id": "5104eb1752edf352",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "file": "Angol/Angol.md",
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-going-out",
+              "title": "Outgoing links from Angol"
+            }
+          },
+          {
+            "id": "2f16ff81efee76dd",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-tags",
+              "title": "Tags"
+            }
+          },
+          {
+            "id": "a4f72f448d7320ce",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "file": "Angol/Angol.md",
+                "followCursor": false,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-list",
+              "title": "Outline of Angol"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300,
+    "collapsed": true
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "switcher:Open quick switcher": false,
+      "canvas:Create new canvas": false,
+      "daily-notes:Open today's daily note": false,
+      "templates:Insert template": false,
+      "command-palette:Open command palette": false
+    }
+  },
+  "active": "aa2847f510dce0eb",
+  "lastOpenFiles": [
+    "Biológia/2025-05-20.md",
+    "Biológia/2025-05-21.md",
+    "Biológia/Biológia.md",
+    "Történelem/Történelem.md",
+    "2025-05-20.md",
+    "Untitled 1.canvas",
+    "Untitled.canvas",
+    "Nyelvtan/Nyelvtan.md",
+    "Németh/Németh.md",
+    "Német/Német.md",
+    "Irodalom/Irodalom.md",
+    "Angol/Angol.md"
+  ]
+}
