@@ -4,11 +4,11 @@
     "type": "split",
     "children": [
       {
-        "id": "8c3e56b44836de19",
+        "id": "c24d6b9396847756",
         "type": "tabs",
         "children": [
           {
-            "id": "2ddf8c9d0173f79b",
+            "id": "a140eeaab42281ab",
             "type": "leaf",
             "state": {
               "type": "empty",
@@ -161,6 +161,11 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "2ddf8c9d0173f79b",
-  "lastOpenFiles": []
+  "active": "a140eeaab42281ab",
+  "lastOpenFiles": [
+    "Történelem.md",
+    "2025-05-30.md",
+    "Untitled 1.canvas",
+    "Untitled.canvas"
+  ]
 }
