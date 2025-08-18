@@ -4,11 +4,11 @@
     "type": "split",
     "children": [
       {
-        "id": "ab97c84f66f4f240",
+        "id": "a71826f137f00655",
         "type": "tabs",
         "children": [
           {
-            "id": "9dc8140cfb9336ac",
+            "id": "d7d6e0ed03d028fb",
             "type": "leaf",
             "state": {
               "type": "empty",
@@ -165,6 +165,8 @@
   },
   "active": "aa2847f510dce0eb",
   "lastOpenFiles": [
+    "~downloads/Logic Blocks Guide.md",
+    "~downloads",
     "Biológia/2025-05-20.md",
     "Biológia/2025-05-21.md",
     "Biológia/Biológia.md",
