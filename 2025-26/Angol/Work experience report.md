@@ -19,5 +19,3 @@ The work itself was very engaging; my task was to design and build various robot
 Overall, this experience taught me a great deal and helped me shape my expectations for future workplaces.
 
 For future organised work experiences I would suggest that the university provide a program to help search for <u>work</u> opportunities. In addition it would also be of great help if the university offered guidance to understanding job contracts.
-
-
