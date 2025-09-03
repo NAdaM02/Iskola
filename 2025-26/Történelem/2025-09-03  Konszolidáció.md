@@ -1,7 +1,5 @@
 [Ismétlés]
 
-
-
 **Teleki Pál kormánya** konszolidációs folyamatok zajlanak:
 
 - **földreform** - sikertelen a valódi problémák megoldásában
@@ -12,11 +10,7 @@
 
 - **a király** nem jöhet vissza, de Teleki mégis támogatná
 
-
-
 --> Teleki visszavonul
-
-
 
 **Bethlen István** lesz az új **miniszterelnök** (1921-31)
 
